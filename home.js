@@ -14,6 +14,7 @@
 
   trustedCards.forEach((item) => {
     const letter = item.querySelector(".trusted-letter");
+    letter.dataset.en = letter.textContent.trim();
     letter.dataset.letter = letter.textContent.trim();
     letter.dataset.outlineClass = letter.classList.contains("trusted-letter-outline-maroon")
       ? "trusted-letter-outline-maroon"
@@ -94,6 +95,25 @@
     if (mobileQuery.matches) return; // phone keeps one letter selected
     if (event.target.closest(".trusted-card")) return;
     clearTrustedCards();
+  });
+
+  const applyTrustedLetters = () => {
+    const arabic = document.documentElement.dir === "rtl" || document.documentElement.lang === "ar";
+    trustedCards.forEach((card) => {
+      const letter = card.querySelector(".trusted-letter");
+      const next = arabic && letter.dataset.ar ? letter.dataset.ar : letter.dataset.en;
+      letter.textContent = next;
+      letter.dataset.letter = next; // phone view reads this for the filled letter
+      card.setAttribute("aria-label", `${next} - ${card.querySelector("h3").textContent}`);
+    });
+  };
+  applyTrustedLetters();
+
+  addEventListener("bsi:languagechange", () => {
+    applyTrustedLetters();
+    if (!mobileQuery.matches) return;
+    const active = trustedCards.find((c) => c.classList.contains("is-active")) || trustedCards[0];
+    selectTrustedCard(active);
   });
 
   splitWords($("#h1"), 0.12, 0.15);

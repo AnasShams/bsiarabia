@@ -775,6 +775,33 @@ nav .wrap {
     transition-duration: 0.01ms;
   }
 }
+/* Arabic: keep TRUSTED reading left to right, fix text styling */
+html[dir="rtl"] .trusted-grid {
+  direction: rtl;
+}
+html[dir="rtl"] .trusted-letter {
+  font-family: "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  height: 1.35em;
+}
+html[dir="rtl"] .trusted-card h3,
+html[dir="rtl"] .trusted-card p,
+html[dir="rtl"] .trusted-mobile-detail {
+  direction: rtl;
+}
+html[dir="rtl"] .trusted-card h3 {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: clamp(14px, 1.3vw, 18px);
+}
+html[dir="rtl"] .trusted-card p {
+  text-align: right;
+}
+html[dir="rtl"] .trusted-mobile-detail {
+  text-align: right;
+}
+
 /* marquee */
 .mq {
   overflow: hidden;
@@ -1826,4 +1853,55 @@ html[dir="rtl"] .footer-cta {
 .footer-social a:hover {
   color: #fff;
   transform: translateY(-2px);
+}
+/* ===== RTL fixes: bullets, checkmarks, lists, arrows ===== */
+html[dir="rtl"] .bl li {
+  padding: 12px 30px 12px 0;
+}
+html[dir="rtl"] .bl li:before {
+  left: auto;
+  right: 4px;
+}
+html[dir="rtl"] .capability-domain-copy .bl li {
+  padding-block: 9px;
+}
+html[dir="rtl"] .prose ul {
+  margin: 10px 20px 0 0;
+}
+html[dir="rtl"] .prose,
+html[dir="rtl"] .bl,
+html[dir="rtl"] .catalog-detail-points {
+  text-align: right;
+}
+
+/* arrows and back links: flip direction in Arabic */
+html[dir="rtl"] .arrow-flip,
+html[dir="rtl"] .catalog-action svg,
+html[dir="rtl"] .leader-profile-back svg,
+html[dir="rtl"] .catalog-back svg {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+/* ===== RTL: mobile menu sub-links and partner cards ===== */
+html[dir="rtl"] #mm a.s {
+  padding-left: 0;
+  padding-right: 16px;
+}
+html[dir="rtl"] .partner-image {
+  left: auto;
+  right: 20px;
+  transition: all 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html[dir="rtl"] .partner-wordmark {
+  margin-left: 0;
+  margin-right: 68px;
+}
+@media (hover: hover) {
+  html[dir="rtl"] .partner-mark:hover .partner-image {
+    left: auto;
+    right: 0;
+  }
+  html[dir="rtl"] .partner-mark:hover .partner-wordmark {
+    margin-right: 0;
+  }
 }
