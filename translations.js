@@ -1831,5 +1831,6 @@ window.BSI_AR_TRANSLATIONS = {
   "Our services": "خدماتنا",
   "Blogs": "المقالات",
   "Useful links": "روابط مفيدة",
-  "Contact": "اتصل بنا"
+  "Contact": "اتصل بنا",
+  "Maritime": "بحري"
 };
